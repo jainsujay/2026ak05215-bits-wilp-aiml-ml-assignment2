@@ -1,8 +1,3 @@
-"""Interactive Streamlit evaluator for five saved ML classifiers.
-
-Run *after* train_model.py: python3 -m streamlit run app.py
-The uploaded test CSV is evaluated without fitting or retraining any model.
-"""
 from pathlib import Path
 import joblib
 import numpy as np
@@ -92,8 +87,9 @@ def evaluate_model(model, scaler, model_name, X, y):
     return predictions, metrics
 
 if uploaded_file is None:
-    st.info("Upload the generated `test_data.csv` in the sidebar. "
-            "It must include all 30 features and the target column.")
+    st.info("Please upload a test dataset in CSV format using the sidebar. "
+        "The dataset must contain all the required input features "
+        "and a 'target' column containing the actual class labels.")
 else:
     try:
         test_df = pd.read_csv(uploaded_file)
